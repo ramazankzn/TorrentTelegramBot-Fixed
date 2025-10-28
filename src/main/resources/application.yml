@@ -1,0 +1,61 @@
+# Bot configuration
+bot:
+  token: ${BOT_TOKEN:YOUR_BOT_TOKEN_HERE}
+
+# Radarr configuration
+radarr:
+  url: ${RADARR_URL:http://localhost:7878}
+  api-key: ${RADARR_API_KEY:}
+
+# Sonarr configuration
+sonarr:
+  url: ${SONARR_URL:http://localhost:8989}
+  api-key: ${SONARR_API_KEY:}
+
+# qBittorrent configuration
+qbittorrent:
+  url: ${QBITTORRENT_URL:http://localhost:8080}
+  username: ${QBITTORRENT_USERNAME:admin}
+  password: ${QBITTORRENT_PASSWORD:}
+
+# Spring configuration
+spring:
+  application:
+    name: torrent-telegram-bot
+  datasource:
+    url: jdbc:h2:mem:torrentbot
+    driverClassName: org.h2.Driver
+    username: sa
+    password: 
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+
+# Logging configuration
+logging:
+  level:
+    com.torrentbot: DEBUG
+    org.telegram: INFO
+    org.springframework: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# Server configuration
+server:
+  port: ${PORT:8080}
+
+# Management endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
